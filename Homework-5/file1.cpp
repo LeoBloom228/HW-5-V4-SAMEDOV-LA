@@ -27,30 +27,59 @@
 
 //Task 2
 
+//#include <iostream>
+//#include <cmath>
+
+
+//int main() 
+//{
+    //int k;
+    //double x;
+
+    //std::cout << "Input k: ";
+    //std::cin >> k;
+
+    //std::cout << "Input x: ";
+    //std::cin >> x;
+
+    //double sum = 0.0;
+
+    //for (int n = 1; n <= k; ++n) 
+    //{
+        //sum += std::pow(x, 2 * (n - 1)) / std::pow(2 + 4 * (n - 1), 2);
+    //}
+
+    //std::cout << "Sum equals: " << sum << std::endl;
+
+    //return 0;
+
+//}
+
+//Task 3
+
 #include <iostream>
 #include <cmath>
 
+int main()
 
-int main() 
 {
-    int k;
-    double x;
+    double epsilon;
 
-    std::cout << "Input k: ";
-    std::cin >> k;
-
-    std::cout << "Input x: ";
-    std::cin >> x;
+    std::cout << "Input epsilon value: ";
+    std::cin >> epsilon;
 
     double sum = 0.0;
+    double term = 1.0;
+    int i = 1;
 
-    for (int n = 1; n <= k; ++n) 
+    while (std::abs(term) >= epsilon) 
     {
-        sum += std::pow(x, 2 * (n - 1)) / std::pow(2 + 4 * (n - 1), 2);
+        sum += term;
+        term = 1.0 / (i * (i + 1));
+        i++;
     }
 
-    std::cout << "Sum equals: " << sum << std::endl;
+    std::cout << "The sum with a given epsilon value which is: " << epsilon << " equals " << sum << std::endl;
 
     return 0;
-
 }
