@@ -90,13 +90,13 @@
 #include <iomanip>
 #include <cmath>
 
-// Вспомогательная функция для вычисления члена ряда
+// Auxiliary function for calculating a member of a series
 double term(int n, double x) 
 {
     return std::pow(x, 2 * n + 1) / ((2 * n + 1) * std::pow(2, n));
 }
 
-// Функция для вычисления суммы ряда с заданной точностью
+// Function for calculating the sum of a series with a given accuracy
 double f(double x, double epsilon, int& n) 
 {
     double sum = 0.0;
