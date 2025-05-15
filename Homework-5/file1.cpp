@@ -1,119 +1,102 @@
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+
 //Task 1
 
-//#include <iostream>
-//#include <cmath>
-//#include <iomanip>
+void task1()
+{
+	int n;
 
-//int main()
-//{
-	//int n;
+	std::cout << "Input n: ";
+	std::cin >> n;
 
-	//std::cout << "Input n: ";
-	//std::cin >> n;
+	double sum = 0.0;
 
-	//double sum = 0.0;
+	for (int i = 1; i <= n; ++i) 
+	{
+		sum += 1.0 / (i * i);
+	}
 
-	//for (int i = 1; i <= n; ++i) 
-	//{
-		//sum += 1.0 / (i * i);
-	//}
+	std::cout << "Sum equals: " << sum << std::endl;
 
-	//std::cout << "Sum equals: " << sum << std::endl;
-
-
-
-	//return 0;
-//}
+}
 
 //Task 2
 
-//#include <iostream>
-//#include <cmath>
+void task2() 
+{
+    int k;
+    double x;
 
+    std::cout << "Input k: ";
+    std::cin >> k;
 
-//int main() 
-//{
-    //int k;
-    //double x;
+    std::cout << "Input x: ";
+    std::cin >> x;
 
-    //std::cout << "Input k: ";
-    //std::cin >> k;
+    double sum = 0.0;
+    double numerator = 1.0;
 
-    //std::cout << "Input x: ";
-    //std::cin >> x;
+    for (int n = 1; n <= k; ++n) 
+    {
+        int denominatorBase = 2 + 4 * (n - 1);
+        double denominator = denominatorBase * denominatorBase;
 
-    //double sum = 0.0;
+        sum += numerator / denominator;
 
-    //for (int n = 1; n <= k; ++n) 
-    //{
-        //sum += std::pow(x, 2 * (n - 1)) / std::pow(2 + 4 * (n - 1), 2);
-    //}
+        numerator *= x * x;
+    }
 
-    //std::cout << "Sum equals: " << sum << std::endl;
+    std::cout << "Sum equals: " << sum << std::endl;
 
-    //return 0;
-
-//}
+}
 
 //Task 3
 
-//#include <iostream>
-//#include <cmath>
+void task3()
+{
+    double epsilon;
 
-//int main()
+    std::cout << "Input epsilon value: ";
+    std::cin >> epsilon;
 
-//{
-    //double epsilon;
+    double sum = 0.0;
+    double term = 1.0;
+    int i = 1;
 
-    //std::cout << "Input epsilon value: ";
-    //std::cin >> epsilon;
+    while (std::abs(term) >= epsilon) 
+    {
+        sum += term;
+        term = 1.0 / (i * (i + 1));
+        i++;
+    }
 
-    //double sum = 0.0;
-    //double term = 1.0;
-    //int i = 1;
+    std::cout << "The sum with a given epsilon value which is: " << epsilon << " equals " << sum << std::endl;
 
-    //while (std::abs(term) >= epsilon) 
-    //{
-        //sum += term;
-        //term = 1.0 / (i * (i + 1));
-        //i++;
-    //}
-
-    //std::cout << "The sum with a given epsilon value which is: " << epsilon << " equals " << sum << std::endl;
-
-    //return 0;
-//}
+}
 
 //Task 4
-
-#include <iostream>
-#include <iomanip>
-#include <cmath>
-
-// Auxiliary function for calculating a member of a series
-double term(int n, double x) 
-{
-    return std::pow(x, 2 * n + 1) / ((2 * n + 1) * std::pow(2, n));
-}
 
 // Function for calculating the sum of a series with a given accuracy
 double f(double x, double epsilon, int& n) 
 {
     double sum = 0.0;
-    double current_term = term(0, x);
+    double current_term = x;
     n = 0;
 
     while (std::abs(current_term) >= epsilon) 
     {
         sum += current_term;
         n++;
-        current_term = term(n, x);
+
+        current_term *= (x * x * (2 * n - 1)) / (2.0 * (2 * n + 1));
     }
 
     return sum;
 }
 
-int main() 
+void task4() 
 {
        
         double a, b, epsilon;
@@ -133,13 +116,23 @@ int main()
 
         std::cout << std::setw(10) << "No." << std::setw(10) << "x" << std::setw(20) << "F(x)" << std::setw(10) << "n" << std::endl;
 
-        while (x <= b) {
+        while (x <= b) 
+        {
             int n;
             double result = f(x, epsilon, n);
             std::cout << std::setw(10) << i << std::setw(10) << x << std::setw(20) << result << std::setw(10) << n << std::endl;
             x += h;
             i++;
         }
+
+}
+
+int main()
+{
+    task1();
+    task2();
+    task3();
+    task4();
 
     return 0;
 }
